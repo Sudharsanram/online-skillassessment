@@ -1,0 +1,75 @@
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.dashboard-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.dashboard-subtext {
+  color: #6b7280;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.subject-card {
+  width: 100%;
+  max-width: 250px;
+  height: 180px;
+  color: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.subject-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.25);
+}
+
+.subject-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.subject-action {
+  font-weight: 500;
+  text-align: right;
+}
+
+/* Gradient Backgrounds */
+.gradient-yellow {
+  background: linear-gradient(to bottom right, #facc15, #f97316);
+}
+
+.gradient-red {
+  background: linear-gradient(to bottom right, #ef4444, #f97316);
+}
+
+.gradient-blue {
+  background: linear-gradient(to bottom right, #3b82f6, #14b8a6);
+}
+
+.gradient-cyan {
+  background: linear-gradient(to bottom right, #0ea5e9, #06b6d4);
+}

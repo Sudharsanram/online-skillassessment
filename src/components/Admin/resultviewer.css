@@ -1,0 +1,48 @@
+.user-select {
+  padding: 10px;
+  width: 100%;
+  max-width: 50%;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.result-container {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.result-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.result-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.result-item {
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.score-pass {
+  color: #28a745;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.score-fail {
+  color: #dc3545;
+  font-weight: bold;
+  margin-left: 8px;
+}

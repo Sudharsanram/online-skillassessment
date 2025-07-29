@@ -1,0 +1,122 @@
+/* dashboard.css */
+
+.dashboard-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  animation: fadeIn 0.8s ease-in;
+}
+
+.dashboard-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.dashboard-description {
+  color: #4b5563;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.dashboard-card {
+  position: relative;
+  padding: 1.75rem;
+  border-radius: 1.25rem;
+  background-color: #1e293b;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+  color: white;
+  height: 12rem;
+  cursor: pointer;
+  display: flex;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+  transform-style: preserve-3d;
+  background-size: 200% 200%;
+  backdrop-filter: blur(4px);
+}
+
+.dashboard-card:hover {
+  transform: scale(1.05) rotateX(3deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.subject-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.subject-link {
+  font-size: 1.05rem;
+  font-weight: 500;
+  align-self: flex-end;
+}
+
+/* Background Glow Effect */
+.glow-effect {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent 70%);
+  animation: pulseGlow 5s linear infinite;
+  z-index: 1;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glow animation */
+@keyframes pulseGlow {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 0.4;
+  }
+}
