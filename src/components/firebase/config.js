@@ -1,23 +1,23 @@
+/* global __app_id */
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
-// Your web app's Firebase configuration - now using environment variables
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+  apiKey: "AIzaSyBGL8qTVHJ4rwCZRk1eIlTqLoKK0vwUE6w",
+  authDomain: "online-skill-assessment-system.firebaseapp.com",
+  projectId: "online-skill-assessment-system",
+  storageBucket: "online-skill-assessment-system.firebasestorage.app",
+  messagingSenderId: "230648953456",
+  appId: "1:230648953456:web:89d60dac30c8f01f3b12b5",
+  measurementId: "G-C9F6RCV29Z"
 };
 
+
 // --- App ID and Admin ---
-// If 'appId' is meant to be a separate constant, ensure it's distinct from firebaseConfig.appId
-// And use an environment variable for ADMIN_EMAIL as well for consistency and best practice.
-export const appId = import.meta.env.VITE_APP_ID || 'skill-assessment-system'; // Assuming you might have a VITE_APP_ID in env too
-export const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL; // Read admin email from environment variables
+export const appId = typeof __app_id !== 'undefined' ? __app_id : 'skill-assessment-system';
+export const ADMIN_EMAIL = 'admin@skill.test';
 
 // --- Initialize Firebase ---
 const app = initializeApp(firebaseConfig);
