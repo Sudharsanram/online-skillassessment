@@ -3,12 +3,14 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase/config.js';
 import './login.css';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
-export default function LoginPage({ setPage }) {
+export default function LoginPage() { // Removed setPage prop
     const [identifier, setIdentifier] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
+    const navigate = useNavigate(); // Initialize the useNavigate hook
 
     // Load from localStorage if "Remember me" is on
     useEffect(() => {
@@ -31,7 +33,9 @@ export default function LoginPage({ setPage }) {
             if (!identifier.includes('@')) {
                 const q = query(collection(db, "users"), where("username", "==", identifier));
                 const querySnapshot = await getDocs(q);
-                if (querySnapshot.empty) throw new Error("Username not found");
+                if (querySnapshot.empty) {
+                    throw new Error("Username not found");
+                }
 
                 const userData = querySnapshot.docs[0].data();
                 emailToLogin = userData.email;
@@ -45,8 +49,9 @@ export default function LoginPage({ setPage }) {
             } else {
                 localStorage.removeItem("rememberMe");
             }
+            // React Router will handle redirection to /dashboard via App.js's Route logic
         } catch (err) {
-            setError('Failed to login. Please check your credentials.');
+            setError('Failed to login. Please check your credentials or register if you are a new user.');
         }
     };
 
@@ -90,7 +95,10 @@ export default function LoginPage({ setPage }) {
             </div>
             <p className="login-footer">
                 New user?{' '}
-                <button onClick={() => setPage('register')} className="register-link">
+                <button
+                    onClick={() => navigate('/register')} // Use navigate to go to /register
+                    className="register-link"
+                >
                     Register here
                 </button>
             </p>

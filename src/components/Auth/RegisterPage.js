@@ -3,12 +3,14 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
 import { auth, db } from '../firebase/config.js';
 import './login.css'; // Use your CSS file
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
-export default function RegisterPage({ setPage }) {
+export default function RegisterPage() { // Removed setPage prop
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate(); // Initialize the useNavigate hook
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -24,8 +26,8 @@ export default function RegisterPage({ setPage }) {
                 createdAt: new Date()
             });
 
-            // Optional: redirect to login
-            setPage('login');
+            // Redirect to login page after successful registration
+            navigate('/'); // Use navigate to go to the root path (login page)
         } catch (err) {
             setError('Failed to register. ' + err.message);
         }
@@ -72,7 +74,10 @@ export default function RegisterPage({ setPage }) {
             </div>
             <p className="login-footer">
                 Already have an account?{' '}
-                <button onClick={() => setPage('login')} className="register-link">
+                <button
+                    onClick={() => navigate('/')} // Use navigate to go to the root path (login page)
+                    className="register-link"
+                >
                     Login here
                 </button>
             </p>
