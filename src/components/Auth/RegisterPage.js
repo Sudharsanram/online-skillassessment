@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
 import { auth, db } from '../firebase/config.js';
-import './login.css'; // Use your CSS file
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import './login.css';
+import { useNavigate } from 'react-router-dom';
 
-export default function RegisterPage() { // Removed setPage prop
+export default function RegisterPage() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate(); // Initialize the useNavigate hook
+    const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -19,15 +19,13 @@ export default function RegisterPage() { // Removed setPage prop
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            // Save username and email in Firestore
             await setDoc(doc(db, "users", user.uid), {
                 email: user.email,
                 username: username,
                 createdAt: new Date()
             });
 
-            // Redirect to login page after successful registration
-            navigate('/'); // Use navigate to go to the root path (login page)
+            navigate('/');
         } catch (err) {
             setError('Failed to register. ' + err.message);
         }
@@ -75,7 +73,7 @@ export default function RegisterPage() { // Removed setPage prop
             <p className="login-footer">
                 Already have an account?{' '}
                 <button
-                    onClick={() => navigate('/')} // Use navigate to go to the root path (login page)
+                    onClick={() => navigate('/')}
                     className="register-link"
                 >
                     Login here

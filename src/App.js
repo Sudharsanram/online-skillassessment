@@ -5,7 +5,8 @@ import RegisterPage from './components/Auth/RegisterPage';
 import UserDashboard from './components/Dashboard/UserDashboard';
 import AdminDashboard from './components/Dashboard/AdminDashboard';
 import Navbar from './components/Layout/Navbar';
-import { auth } from '../src/components/firebase/config';
+// ✅ Import both auth and ADMIN_EMAIL from your config file
+import { auth, ADMIN_EMAIL } from '../src/components/firebase/config';
 import { onAuthStateChanged } from 'firebase/auth';
 
 export default function App() {
@@ -40,7 +41,8 @@ export default function App() {
           path="/dashboard"
           element={
             user ? (
-              user.email === 'admin@example.com' ? (
+              // ✅ FIX: Use the ADMIN_EMAIL variable for the check
+              user.email === ADMIN_EMAIL ? (
                 <AdminDashboard user={user} />
               ) : (
                 <UserDashboard user={user} />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SubjectView from '../Quiz/SubjectView';
-import './UserDashboard.css'; // Import the custom CSS
+import './UserDashboard.css';
 
 const subjects = [
   { name: 'JavaScript', color: 'gradient-yellow' },

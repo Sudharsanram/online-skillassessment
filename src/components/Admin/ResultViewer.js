@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
-import { db, appId, ADMIN_EMAIL } from '../firebase/config';
-import './resultviewer.css'; // ✅ Import the CSS
+// ✅ FIX: ADMIN_EMAIL has been removed from this import statement
+import { db, appId } from '../firebase/config';
+import './resultviewer.css';
 
 export default function ResultViewer() {
     const [users, setUsers] = useState([]);
@@ -15,7 +16,9 @@ export default function ResultViewer() {
             const usersCol = collection(db, "users");
             const userSnapshot = await getDocs(usersCol);
             const userList = userSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            setUsers(userList.filter(u => u.email !== ADMIN_EMAIL));
+            
+            setUsers(userList);
+            
             setLoading(false);
         };
         fetchUsers();

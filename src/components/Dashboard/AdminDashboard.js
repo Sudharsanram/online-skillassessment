@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import QuestionManager from '../Admin/QuestionManager';
 import ResultViewer from '../Admin/ResultViewer';
-import './AdminDashboard.css'; // custom CSS file
+import './AdminDashboard.css';
 
 export default function AdminDashboard() {
     const [view, setView] = useState('questions');

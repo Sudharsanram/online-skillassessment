@@ -3,16 +3,15 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase/config.js';
 import './login.css';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { useNavigate } from 'react-router-dom';
 
-export default function LoginPage() { // Removed setPage prop
+export default function LoginPage() {
     const [identifier, setIdentifier] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
-    const navigate = useNavigate(); // Initialize the useNavigate hook
+    const navigate = useNavigate();
 
-    // Load from localStorage if "Remember me" is on
     useEffect(() => {
         const saved = JSON.parse(localStorage.getItem('rememberMe'));
         if (saved?.identifier && saved?.password) {
@@ -29,27 +28,23 @@ export default function LoginPage() { // Removed setPage prop
         try {
             let emailToLogin = identifier;
 
-            // If it's not an email, treat it as a username and resolve email
             if (!identifier.includes('@')) {
                 const q = query(collection(db, "users"), where("username", "==", identifier));
                 const querySnapshot = await getDocs(q);
                 if (querySnapshot.empty) {
                     throw new Error("Username not found");
                 }
-
                 const userData = querySnapshot.docs[0].data();
                 emailToLogin = userData.email;
             }
 
             await signInWithEmailAndPassword(auth, emailToLogin, password);
 
-            // Save to localStorage if checked
             if (rememberMe) {
                 localStorage.setItem("rememberMe", JSON.stringify({ identifier, password }));
             } else {
                 localStorage.removeItem("rememberMe");
             }
-            // React Router will handle redirection to /dashboard via App.js's Route logic
         } catch (err) {
             setError('Failed to login. Please check your credentials or register if you are a new user.');
         }
@@ -96,7 +91,7 @@ export default function LoginPage() { // Removed setPage prop
             <p className="login-footer">
                 New user?{' '}
                 <button
-                    onClick={() => navigate('/register')} // Use navigate to go to /register
+                    onClick={() => navigate('/register')}
                     className="register-link"
                 >
                     Register here

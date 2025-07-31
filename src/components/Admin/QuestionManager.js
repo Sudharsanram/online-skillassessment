@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db, appId } from '../firebase/config';
 import AddQuestionForm from './AddQuestionForm';
-import './questionmanager.css'; // ✅ Import the CSS
+import './questionmanager.css';
 
 const subjects = ['JavaScript', 'HTML', 'CSS', 'React'];
 
